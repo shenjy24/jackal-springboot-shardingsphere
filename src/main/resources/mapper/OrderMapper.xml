@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.jonas.mapper.OrderMapper">
 
-    <select id="getOrder" resultType="com.jonas.entity.Order">
-        select * from order where user_id = #{userId}
+    <select id="listOrder" resultType="com.jonas.entity.Order">
+        select * from `order` where user_id = #{userId}
     </select>
 </mapper>

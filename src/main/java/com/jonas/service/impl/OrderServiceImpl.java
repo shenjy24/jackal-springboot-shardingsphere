@@ -6,6 +6,8 @@ import com.jonas.mapper.OrderMapper;
 import com.jonas.service.OrderService;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * 【 enter the class description 】
  *
@@ -14,7 +16,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements OrderService {
     @Override
-    public Order getOrder(Long userId) {
-        return baseMapper.getOrder(userId);
+    public List<Order> listOrder(Long userId) {
+        return baseMapper.listOrder(userId);
     }
 }

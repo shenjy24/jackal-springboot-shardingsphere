@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 /**
  * 【 enter the class description 】
  *
@@ -20,16 +22,34 @@ public class OrderController {
     @Autowired
     private OrderService orderService;
 
+    /**
+     * 根据主键获取订单
+     *
+     * @param orderId
+     * @return
+     */
     @PostMapping("/getOrder")
     public Order getOrder(Long orderId) {
         return orderService.getById(orderId);
     }
 
+    /**
+     * 获取用户订单列表
+     *
+     * @param userId
+     * @return
+     */
     @PostMapping("/getOrderByUid")
-    public Order getOrderByUid(Long userId) {
-        return orderService.getOrder(userId);
+    public List<Order> getOrderByUid(Long userId) {
+        return orderService.listOrder(userId);
     }
 
+    /**
+     * 保存用户订单
+     *
+     * @param userId
+     * @return
+     */
     @PostMapping("/saveOrder")
     public boolean saveOrder(Long userId) {
         Order order = new Order();
