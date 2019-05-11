@@ -1,0 +1,53 @@
+server:
+  port: 8080
+
+spring:
+  main:
+    allow-bean-definition-overriding: true
+
+sharding:
+  jdbc:
+    datasource:
+      names: master0,slave0,slave1
+      master0:
+        type: com.alibaba.druid.pool.DruidDataSource
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        url: jdbc:mysql://localhost:3306/tradedb1?nullNamePatternMatchesAll=true&useSSL=false
+        username: root
+        password: 123456
+      slave0:
+        type: com.alibaba.druid.pool.DruidDataSource
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        url: jdbc:mysql://localhost:3306/tradedb2?nullNamePatternMatchesAll=true&useSSL=false
+        username: root
+        password: 123456
+      slave1:
+        type: com.alibaba.druid.pool.DruidDataSource
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        url: jdbc:mysql://localhost:3306/tradedb3?nullNamePatternMatchesAll=true&useSSL=false
+        username: root
+        password: 123456
+    config:
+      sharding:
+        tables:
+          order:
+            actual-data-nodes: ds0.order_$->{0..1}
+            table-strategy:
+              inline:
+                sharding-column: order_id
+                algorithm-expression: order_$->{order_id % 2}
+        master-slave-rules:
+          ds0:
+            master-data-source-name: master0
+            slave-data-source-names: slave0,slave1
+      props:
+        sql:
+          show: true
+
+mybatis-plus:
+  mapper-locations: classpath:/mapper/**/*Mapper.xml
+  global-config:
+    db-config:
+      id-type: id_worker
+  configuration:
+    map-underscore-to-camel-case: true
