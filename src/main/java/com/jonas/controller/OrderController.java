@@ -1,5 +1,6 @@
 package com.jonas.controller;
 
+import com.baomidou.mybatisplus.core.toolkit.SystemClock;
 import com.jonas.entity.Order;
 import com.jonas.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,5 +28,14 @@ public class OrderController {
     @PostMapping("/getOrderByUid")
     public Order getOrderByUid(Long userId) {
         return orderService.getOrder(userId);
+    }
+
+    @PostMapping("/saveOrder")
+    public boolean saveOrder(Long userId) {
+        Order order = new Order();
+        order.setUserId(userId);
+        order.setCtime(SystemClock.now());
+        order.setUtime(SystemClock.now());
+        return orderService.save(order);
     }
 }
