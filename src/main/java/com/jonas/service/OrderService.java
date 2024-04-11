@@ -25,6 +25,6 @@ public class OrderService {
     }
 
     public Order getOrder(Long userId) {
-        return orderRepository.getByUserId(userId);
+        return orderRepository.findByUserId(userId);
     }
 }

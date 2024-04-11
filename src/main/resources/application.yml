@@ -1,4 +1,9 @@
 spring:
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5Dialect
+        show_sql: true
   shardingsphere:
     # 数据源配置
     datasource:
@@ -31,11 +36,11 @@ spring:
             type: INLINE
             props:
               # 分片算法的行表达式
-              algorithm-expression: order
+              algorithm-expression: t_order
         tables:
           # 逻辑表名称
-          order:
-            actual-data-nodes: sharding$->{0..1}.order
+          t_order:
+            actual-data-nodes: sharding$->{0..1}.t_order
             # 分库策略
             database-strategy:
               standard:

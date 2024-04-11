@@ -6,7 +6,7 @@ CREATE DATABASE IF NOT EXISTS sharding1;
 ```
 #### 2. 在数据库创建表
 ```sql
-CREATE TABLE IF NOT EXISTS `order`
+CREATE TABLE IF NOT EXISTS `t_order`
 (
     `order_id` bigint NOT NULL COMMENT '订单ID',
     `user_id`  bigint NOT NULL COMMENT '用户ID',
@@ -18,8 +18,11 @@ CREATE TABLE IF NOT EXISTS `order`
   COLLATE = utf8mb4_0900_ai_ci COMMENT ='订单表'
 ```
 
-#### 3. 约定规则：如果订单id是奇数把数据添加sharding1,如果偶数添加到sharding2
+#### 3. 约定规则：如果订单id是奇数把数据添加sharding1,如果偶数添加到sharding0
 
 ### 二. 问题
 #### 1.`org.yaml.snakeyaml.representer.Representer: method 'void <init>()' not found`
 解决方案：重写`org.yaml.snakeyaml.representer.Representer`，添加默认构造函数
+
+#### 2. `You have an error in your SQL syntax`
+解决方案：表名不能为`order`，属于关键词

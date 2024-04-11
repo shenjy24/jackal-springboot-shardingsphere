@@ -23,12 +23,19 @@ public class ApplicationTest {
 
     @Test
     public void testSave() {
-        Order order = new Order();
-        order.setOrderId(1L);
-        order.setUserId(1L);
-        order.setCtime(System.currentTimeMillis());
-        order.setUtime(System.currentTimeMillis());
+        Order order = new Order()
+                .setOrderId(1L)
+                .setUserId(1L)
+                .setCtime(System.currentTimeMillis())
+                .setUtime(System.currentTimeMillis());
         orderService.save(order);
+
+        Order order1 = new Order()
+                .setOrderId(2L)
+                .setUserId(1L)
+                .setCtime(System.currentTimeMillis())
+                .setUtime(System.currentTimeMillis());
+        orderService.save(order1);
     }
 
     @Test
