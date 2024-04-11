@@ -1,4 +1,9 @@
 ### 一. 环境搭建
+
+>spring-boot: 2.7.6
+> 
+>shardingsphere-jdbc-core-spring-boot-starter: 5.1.0
+
 #### 1.创建数据库
 ```sql
 CREATE DATABASE IF NOT EXISTS sharding0;
