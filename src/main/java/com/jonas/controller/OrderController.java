@@ -30,7 +30,7 @@ public class OrderController {
     }
 
     @PostMapping("/saveOrder")
-    public boolean saveOrder(Long userId) {
+    public Order saveOrder(Long userId) {
         Order order = new Order();
         order.setUserId(userId);
         order.setCtime(System.currentTimeMillis());
