@@ -1,0 +1,47 @@
+spring:
+  shardingsphere:
+    # 数据源配置
+    datasource:
+      # 数据源名称，多数据源以逗号分隔
+      names: sharding1,sharding2
+      sharding1:
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        type: com.zaxxer.hikari.HikariDataSource
+        jdbc-url: jdbc:mysql://127.0.0.1:3306/sharding1
+        username: root
+        password: 123456
+      sharding2:
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        type: com.zaxxer.hikari.HikariDataSource
+        jdbc-url: jdbc:mysql://127.0.0.1:3306/sharding1
+        username: root
+        password: 123456
+    # 规则配置
+    rules:
+      sharding:
+        # 分片算法配置
+        sharding-algorithms:
+          # 自定义分库算法名
+          database-inline:
+            type: INLINE
+            props:
+              # 分片算法的行表达式
+              algorithm-expression: sharding$->{ order_id % 2 }
+        # 分布式ID算法配置
+        key-generators:
+          snowflake:
+            type: SNOWFLAKE
+            props:
+              worker-id: 1
+        tables:
+          # 逻辑表名称
+          order:
+            actual-data-nodes: sharding$->{1..2}.order
+            # 分表策略
+            database-strategy:
+              standard:
+                sharding-column: order_id
+                sharding-algorithm-name: database-inline # 上述配置的自定义算法名
+    props:
+      sql-show: true
+

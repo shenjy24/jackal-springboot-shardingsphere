@@ -1,9 +1,9 @@
 package com.jonas.entity;
 
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
+
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 /**
  * 【 enter the class description 】
@@ -11,18 +11,15 @@ import lombok.Data;
  * @author shenjy 2018/12/01
  */
 @Data
-@TableName("order")
+@Table(name = "order")
 public class Order {
 
-    @TableId("order_id")
+    @Id
     private Long orderId;
 
-    @TableField("user_id")
     private Long userId;
 
-    @TableField("ctime")
     private Long ctime;
 
-    @TableField("utime")
     private Long utime;
 }
