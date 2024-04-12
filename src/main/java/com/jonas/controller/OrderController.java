@@ -37,4 +37,12 @@ public class OrderController {
         order.setUtime(System.currentTimeMillis());
         return orderService.save(order);
     }
+
+    /**
+     * 测试XA事务
+     */
+    @PostMapping("/testXaTransaction")
+    public void testXaTransaction(Long orderId1, Long orderId2, int num) {
+        orderService.testXaTransaction(orderId1, orderId2, num);
+    }
 }
