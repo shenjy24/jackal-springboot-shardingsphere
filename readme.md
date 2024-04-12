@@ -31,3 +31,9 @@ CREATE TABLE IF NOT EXISTS `t_order`
 
 #### 2. `You have an error in your SQL syntax`
 解决方案：表名不能为`order`，属于关键词
+
+#### 3. 测试XA事务时，`com.atomikos.icatch.jta.JtaTransactionServicePlugin does not define or inherit an implementation of the resolved method 'abstract void beforeInit()' of interface com.atomikos.icatch.TransactionServicePlugin`
+解决方案：`shardingsphere-transaction-xa-core` 版本调整为 5.0.0
+
+#### 4. `org.hibernate.LazyInitializationException - could not initialize proxy - no Session`
+解决方案：在方法上或者类上添加 `org.springframework.transaction.annotation.Transactional`

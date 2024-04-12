@@ -7,6 +7,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.transaction.annotation.Transactional;
 
 
 /**
@@ -39,9 +40,10 @@ public class ApplicationTest {
     }
 
     @Test
+    @Transactional
     public void testGet() {
         Order order = orderService.getById(1L);
-        System.out.println("order:" + order);
+        System.out.println(order);
     }
 
     @Test
