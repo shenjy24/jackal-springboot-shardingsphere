@@ -37,3 +37,6 @@ CREATE TABLE IF NOT EXISTS `t_order`
 
 #### 4. `org.hibernate.LazyInitializationException - could not initialize proxy - no Session`
 解决方案：在方法上或者类上添加 `org.springframework.transaction.annotation.Transactional`
+
+#### 5. `No serializer found for class org.hibernate.proxy.pojo.bytebuddy.ByteBuddyInterceptor`
+解决方案：不要使用`getReferenceId`，使用`findById`
