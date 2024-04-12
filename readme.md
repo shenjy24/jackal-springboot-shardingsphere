@@ -40,3 +40,4 @@ CREATE TABLE IF NOT EXISTS `t_order`
 
 #### 5. `No serializer found for class org.hibernate.proxy.pojo.bytebuddy.ByteBuddyInterceptor`
 解决方案：不要使用`getReferenceId`，使用`findById`
+- getReferenceId() 获取引用，而不触发数据库查询，在真正访问该对象的属性时才会触发数据库查询
