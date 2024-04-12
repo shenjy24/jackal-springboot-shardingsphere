@@ -40,7 +40,7 @@ public class ApplicationTest {
     }
 
     @Test
-    @Transactional
+//    @Transactional
     public void testGet() {
         Order order = orderService.getById(1L);
         System.out.println(order);
